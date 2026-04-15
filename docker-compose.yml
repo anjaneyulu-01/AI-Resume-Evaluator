@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  resume-checker:
+    build: .
+    ports:
+      - "8501:8501"
+    volumes:
+      - .:/app
+    environment:
+      - STREAMLIT_SERVER_HEADLESS=true
+    container_name: resume-ats-checker
+    command: streamlit run app.py
