@@ -1,3 +1,5 @@
+import base64
+import io
 import json
 import joblib
 import pandas as pd
@@ -83,19 +85,16 @@ st.markdown("""
 
 @st.cache_resource
 def load_models():
-    model_dir = Path("model")
     try:
-        ats_model = joblib.load(model_dir / "ats_model.pkl")
+        from model.model_data import ATS_MODEL_B64, SCALER_B64
+        ats_model = joblib.load(io.BytesIO(base64.b64decode(ATS_MODEL_B64)))
+        scaler = joblib.load(io.BytesIO(base64.b64decode(SCALER_B64)))
     except Exception:
         ats_model = None
-
-    try:
-        scaler = joblib.load(model_dir / "scaler.pkl")
-    except Exception:
         scaler = None
 
     try:
-        with open(model_dir / "model_metadata.json", "r") as f:
+        with open(Path("model") / "model_metadata.json", "r") as f:
             metadata = json.load(f)
     except Exception:
         metadata = {"model_type": "Fallback", "test_r2_score": 0}
