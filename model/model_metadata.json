@@ -1,0 +1,16 @@
+{
+  "model_type": "Gradient Boosting",
+  "features": [
+    "skills_count",
+    "education_count",
+    "cert_count",
+    "word_count",
+    "has_email",
+    "has_phone"
+  ],
+  "test_r2_score": 0.9744464582648359,
+  "test_mae": 3.1910580201825307,
+  "test_rmse": 4.142177331014457,
+  "training_samples": 4000,
+  "test_samples": 800
+}

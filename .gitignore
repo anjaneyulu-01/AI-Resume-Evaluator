@@ -125,11 +125,13 @@ Thumbs.db
 
 # ML specific
 *.h5
-*.pkl
 *.joblib
 models/
 data/
 logs/
+# allow deployment model files explicitly
+!model/*.pkl
+!model/*.joblib
 
 # Temporary files
 *.tmp
